@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Dark Theme (Default) */
+    --primary-accent: #6366f1;
+    /* Indigo for accent */
+    --secondary-accent: #a855f7;
+    /* Purple */
+    --bg-color: #09090b;
+    /* Near black */
+    --bg-secondary: #18181b;
+    /* Zinc 900 */
+    --card-bg: #1f1f23;
+    /* Slightly lighter */
+    --card-border: #2e2e35;
+    /* Visible border */
+    --text-main: #fafafa;
+    /* Zinc 50 */
+    --text-secondary: #a1a1aa;
+    /* Zinc 400 */
+    --text-muted: #71717a;
+    /* Zinc 500 */
+    --success-color: #22c55e;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --glass-blur: blur(16px);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+    --bg-color: #fafafa;
+    --bg-secondary: #f4f4f5;
+    --card-bg: #ffffff;
+    --card-border: #e4e4e7;
+    --text-main: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+}
+
+a {
+    color: var(--primary-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary-accent);
+}
+
+/* ============================================
+   CARDS - Clear visual separation
+   ============================================ */
+.card-custom {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-accent);
+}
+
+/* ============================================
+   BUTTONS - High contrast, clear states
+   ============================================ */
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 0.8rem 1.8rem;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    color: #ffffff;
+}
+
+.btn-outline-custom {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--card-border);
+    border-radius: 10px;
+    padding: 0.7rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+    background: var(--bg-secondary);
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+/* ============================================
+   FORM CONTROLS - Clear input fields
+   ============================================ */
+.form-control-custom {
+    background: var(--bg-secondary);
+    border: 2px solid var(--card-border);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-control-custom::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control-custom:focus {
+    background: var(--card-bg);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    outline: none;
+    color: var(--text-main);
+}
+
+/* Form Select */
+.form-select {
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--card-border);
+    color: var(--text-main);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+}
+
+.form-select:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* ============================================
+   NAVBAR - Distinct header
+   ============================================ */
+.navbar-custom {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.8rem 0;
+    backdrop-filter: var(--glass-blur);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-main) !important;
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--text-main) !important;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero-section {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin: 0 auto 2rem;
+}
+
+/* ============================================
+   TABLES - Clear rows and headers
+   ============================================ */
+.table {
+    color: var(--text-main);
+    --bs-table-bg: transparent;
+}
+
+.table th {
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    border-bottom: 2px solid var(--card-border);
+    padding: 1rem;
+    background: var(--bg-secondary);
+}
+
+.table td {
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem;
+    vertical-align: middle;
+    background: var(--card-bg);
+}
+
+.table tbody tr:hover td {
+    background: var(--bg-secondary);
+}
+
+/* ============================================
+   BADGES - Clear role indicators
+   ============================================ */
+.badge-role {
+    padding: 0.5em 1em;
+    font-size: 0.7em;
+    font-weight: 700;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.role-admin {
+    background: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.role-manager {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.role-attendee {
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* ============================================
+   STAT CARDS - Prominent metrics
+   ============================================ */
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-card .stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-main);
+    background: linear-gradient(135deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-card .stat-label {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   MODALS - Clear overlays
+   ============================================ */
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--card-border);
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--card-border);
+    padding: 1.5rem;
+}
+
+.modal-title {
+    font-weight: 700;
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+[data-theme="light"] .btn-close {
+    filter: none;
+}
+
+/* Modal Scrolling Fix */
+.modal-dialog-scrollable .modal-body {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+.modal-dialog-scrollable .modal-content {
+    max-height: calc(100vh - 60px);
+}
+
+.modal-dialog.modal-lg {
+    max-width: 800px;
+}
+
+.modal-backdrop.show {
+    opacity: 0.7;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+.progress {
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    height: 10px;
+    border: 1px solid var(--card-border);
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary-accent) 0%, var(--secondary-accent) 100%);
+    border-radius: 10px;
+}
+
+/* ============================================
+   SELECTION CARDS - Clear interactive elements
+   ============================================ */
+.selection-card {
+    background: var(--bg-secondary);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.selection-card:hover {
+    background: var(--card-bg);
+    border-color: var(--text-muted);
+}
+
+.selection-card.selected {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--primary-accent);
+}
+
+.selection-card .price {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--success-color);
+}
+
+/* ============================================
+   FORM LABELS
+   ============================================ */
+.form-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   CHECKBOXES
+   ============================================ */
+.form-check-input {
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--card-border);
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
+.alert {
+    border-radius: 12px;
+    border: 1px solid;
+    padding: 1rem 1.25rem;
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    background: var(--bg-secondary) !important;
+    border-top: 1px solid var(--card-border) !important;
+}
+
+footer p {
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============================================
+   BADGE VARIANTS
+   ============================================ */
+.badge.bg-success {
+    background: rgba(34, 197, 94, 0.15) !important;
+    color: #4ade80 !important;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge.bg-primary {
+    background: rgba(99, 102, 241, 0.15) !important;
+    color: #a5b4fc !important;
+    border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge.bg-white {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--text-main) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   TEXT UTILITIES
+   ============================================ */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-danger {
+    color: var(--danger-color) !important;
+}
+
+.text-success {
+    color: var(--success-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-accent) !important;
+}
+
+/* ============================================
+   BORDER UTILITIES
+   ============================================ */
+.border-bottom {
+    border-color: var(--card-border) !important;
+}
+
+.border-top {
+    border-color: var(--card-border) !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 2rem;
+    }
+}
