@@ -9,9 +9,16 @@ $site_settings = [
     'secondary_color' => '#a855f7'
 ];
 
-$settings_result = $conn->query("SELECT * FROM site_settings WHERE id = 1");
-if ($settings_result && $row = $settings_result->fetch_assoc()) {
-    $site_settings = $row;
+// Try to load site settings from database
+try {
+    $settings_result = $conn->query("SELECT * FROM site_settings WHERE id = 1");
+    if ($settings_result && $row = $settings_result->fetch_assoc()) {
+        $site_settings = $row;
+    }
+} catch (Exception $e) {
+    // If table doesn't exist, use default settings
+    // This prevents 500 errors if database isn't set up yet
+    error_log("Site settings table not found: " . $e->getMessage());
 }
 
 // Helper function for currency formatting

@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Load site settings
 require_once __DIR__ . '/settings_loader.php';
 
-$base_url = '/ShunaidAhmed';
+$base_url = '/Event-Management-System';
 ?>
 <!DOCTYPE html>
 <html lang="en">

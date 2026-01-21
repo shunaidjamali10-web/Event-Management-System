@@ -82,6 +82,20 @@ CREATE TABLE IF NOT EXISTS booking_activities (
     FOREIGN KEY (activity_id) REFERENCES activities(id) ON DELETE CASCADE
 );
 
+-- Site Settings Table
+CREATE TABLE IF NOT EXISTS site_settings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    site_name VARCHAR(255) DEFAULT 'Event Management System',
+    logo_path VARCHAR(255) DEFAULT NULL,
+    primary_color VARCHAR(7) DEFAULT '#6366f1',
+    secondary_color VARCHAR(7) DEFAULT '#a855f7'
+);
+
+-- Insert Default Site Settings
+INSERT INTO site_settings (id, site_name, logo_path, primary_color, secondary_color)
+VALUES (1, 'Event Management System', NULL, '#6366f1', '#a855f7')
+ON DUPLICATE KEY UPDATE id=id;
+
 -- Seed Sample Singers
 INSERT INTO singers (name, genre, price) VALUES 
 ('Rahat Fateh Ali Khan', 'Qawwali', 5000.00),
