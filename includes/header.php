@@ -31,10 +31,11 @@ require_once __DIR__ . '/settings_loader.php';
     </style>
     
     <script>
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-        }
+        // Initialize theme before page renders to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
     </script>
 </head>
 <body>
