@@ -38,7 +38,7 @@ $users = $conn->query("SELECT id, username, email, role FROM users ORDER BY user
                         <label class="form-label">Logo</label>
                         <?php if (!empty($settings['logo_path'])): ?>
                             <div class="mb-2">
-                                <img src="<?php echo $base_url . '/' . $settings['logo_path']; ?>" alt="Current Logo" height="50" class="rounded">
+                                <img src="<?php echo url($settings['logo_path']); ?>" alt="Current Logo" height="50" class="rounded">
                                 <small class="text-muted d-block mt-1">Current logo</small>
                             </div>
                         <?php endif; ?>
@@ -116,7 +116,15 @@ $users = $conn->query("SELECT id, username, email, role FROM users ORDER BY user
                 <ul class="list-unstyled mb-0">
                     <li class="d-flex justify-content-between py-2 border-bottom" style="border-color: var(--card-border) !important;">
                         <span class="text-muted">Last Updated</span>
-                        <span><?php echo date('M d, Y h:i A', strtotime($settings['updated_at'])); ?></span>
+                        <span>
+                            <?php
+                                if (!empty($settings['updated_at'])) {
+                                    echo date('M d, Y h:i A', strtotime($settings['updated_at']));
+                                } else {
+                                    echo 'Never';
+                                }
+                            ?>
+                        </span>
                     </li>
                     <li class="d-flex justify-content-between py-2">
                         <span class="text-muted">PHP Version</span>

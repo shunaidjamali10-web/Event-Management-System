@@ -5,16 +5,20 @@
  */
 
 // Auto-detect protocol (http or https)
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || ($_SERVER['SERVER_PORT'] ?? 80) == 443) ? "https://" : "http://";
 
-// Get host name
-$host = $_SERVER['HTTP_HOST'];
+// Get host name (fallback to localhost for CLI)
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
-// Get the directory path of the application
-$script_path = str_replace('\\', '/', dirname(dirname($_SERVER['SCRIPT_NAME'])));
+// Compute base URL relative to document root for portability
+$docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? str_replace('\\', '/', rtrim($_SERVER['DOCUMENT_ROOT'], '/')) : '';
+$appRoot = str_replace('\\', '/', dirname(__DIR__));
 
-// Build base URL (works on localhost, subdirectory, or root domain)
-$base_url = rtrim($script_path, '/');
+$base_url = '';
+if ($docRoot && strpos($appRoot, $docRoot) === 0) {
+    $base_url = substr($appRoot, strlen($docRoot));
+}
+$base_url = rtrim($base_url, '/');
 
 // Full site URL (useful for absolute URLs)
 $site_url = $protocol . $host . $base_url;
