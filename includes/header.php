@@ -20,7 +20,7 @@ require_once __DIR__ . '/settings_loader.php';
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
     
     <!-- Dynamic Colors from Admin Settings -->
     <style>
@@ -44,7 +44,7 @@ require_once __DIR__ . '/settings_loader.php';
     <div class="container">
         <a class="navbar-brand" href="<?php echo url('index.php'); ?>">
             <?php if (!empty($site_settings['logo_path'])): ?>
-                <img src="<?php echo BASE_URL . '/' . htmlspecialchars($site_settings['logo_path']); ?>" alt="Logo" height="40" class="me-2">
+                <img src="<?php echo SITE_URL . '/' . htmlspecialchars($site_settings['logo_path']); ?>" alt="Logo" height="40" class="me-2">
             <?php else: ?>
                 <i class="fa-solid fa-calendar-check me-2" style="color: var(--primary-accent);"></i>
             <?php endif; ?>
