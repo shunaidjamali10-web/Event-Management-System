@@ -3,10 +3,11 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// Load configuration
+require_once __DIR__ . '/../config/config.php';
+
 // Load site settings
 require_once __DIR__ . '/settings_loader.php';
-
-$base_url = '/Event-Management-System';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ $base_url = '/Event-Management-System';
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css">
     
     <!-- Dynamic Colors from Admin Settings -->
     <style>
@@ -40,9 +41,9 @@ $base_url = '/Event-Management-System';
 
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
-        <a class="navbar-brand" href="<?php echo $base_url; ?>/index.php">
+        <a class="navbar-brand" href="<?php echo url('index.php'); ?>">
             <?php if (!empty($site_settings['logo_path'])): ?>
-                <img src="<?php echo $base_url . '/' . htmlspecialchars($site_settings['logo_path']); ?>" alt="Logo" height="40" class="me-2">
+                <img src="<?php echo BASE_URL . '/' . htmlspecialchars($site_settings['logo_path']); ?>" alt="Logo" height="40" class="me-2">
             <?php else: ?>
                 <i class="fa-solid fa-calendar-check me-2" style="color: var(--primary-accent);"></i>
             <?php endif; ?>
@@ -62,26 +63,26 @@ $base_url = '/Event-Management-System';
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $base_url; ?>/index.php">Home</a>
+                    <a class="nav-link" href="<?php echo url('index.php'); ?>">Home</a>
                 </li>
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $base_url; ?>/dashboard/<?php echo $_SESSION['role']; ?>.php">Dashboard</a>
+                        <a class="nav-link" href="<?php echo url('dashboard/' . $_SESSION['role'] . '.php'); ?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $base_url; ?>/dashboard/profile.php">
+                        <a class="nav-link" href="<?php echo url('dashboard/profile.php'); ?>">
                             <i class="fa-solid fa-user me-1"></i>Profile
                         </a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-outline-custom btn-sm" href="<?php echo $base_url; ?>/auth/logout.php">Logout</a>
+                        <a class="btn btn-outline-custom btn-sm" href="<?php echo url('auth/logout.php'); ?>">Logout</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item ms-2">
-                        <a class="nav-link" href="<?php echo $base_url; ?>/auth/login.php">Login</a>
+                        <a class="nav-link" href="<?php echo url('auth/login.php'); ?>">Login</a>
                     </li>
                     <li class="nav-item ms-2">
-                        <a class="btn btn-primary-custom btn-sm" href="<?php echo $base_url; ?>/auth/register.php">Get Started</a>
+                        <a class="btn btn-primary-custom btn-sm" href="<?php echo url('auth/register.php'); ?>">Get Started</a>
                     </li>
                 <?php endif; ?>
             </ul>

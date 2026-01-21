@@ -6,7 +6,9 @@ USE event_management_system;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
+    full_name VARCHAR(100) DEFAULT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(20) DEFAULT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'manager', 'attendee') DEFAULT 'attendee',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
